@@ -49,12 +49,12 @@
       
       <choice>
             <when>          
-                <xpath>/person/firstName = 'James'</xpath>
+                <xpath>/person/firstName = 'sunil'</xpath>
                   <log id="_log1" message="James"/>
                    <to uri="file:target/James"/>
             </when>
             <when>
-                <xpath>/person/firstName = 'Hiram'</xpath>
+                <xpath>/person/firstName = 'kumar'</xpath>
                   <log id="_log2" message="Hiram"/>
                 <to uri="file:target/Hiram"/>
             </when>
