@@ -54,7 +54,7 @@
                    <to uri="file:target/James"/>
             </when>
             <when>
-                <xpath>/person/firstName = 'kumar'</xpath>
+                <xpath>/person/firstName = 'kumar123'</xpath>
                   <log id="_log2" message="Hiram"/>
                 <to uri="file:target/Hiram"/>
             </when>
