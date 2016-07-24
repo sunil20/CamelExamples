@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Configures the Camel Context-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+  <camelContext xmlns="http://camel.apache.org/schema/spring">
+    <!-- here is a sample which processes the input files
+         (leaving them in place - see the 'noop' flag)
+         then performs content based routing on the message using XPath -->
+    <route>       
+      <from uri="file:src/data?noop=true"/>
+       <log message="=========mulitcasting============================="></log>  
+       <!-- parallelProcessing="true" -->
+       <multicast stopOnException="true" >
+        <to uri="direct:a"/>
+        <to uri="direct:b"/>
+        <to uri="direct:c"/>
+       </multicast>    
+     </route>
+ 
+<route>
+    <from uri="direct:a"/>
+    <to uri="bean:myBean?method=addFirst"/>   
+    <log message="direct:a message"></log>  
+    <log message="\n\n"></log>   
+    <to uri="stream:out"/>
+</route>
+ 
+<route>
+   <from uri="direct:b"/>
+     <to uri="bean:myBean?method=addSecond"/>
+      <log message="\n\n"></log>   
+   <log message="\n direct:b message"></log> 
+     <to uri="stream:out"/>
+</route>
+ 
+<route>
+   <from uri="direct:c"/>
+    <to uri="bean:myBean?method=addThird"/>
+     <log message="\n\n"></log>   
+     <log message="\n direct:b message"></log> 
+    <to uri="stream:out"/>
+</route>
+    
+     <route>
+        <from uri="direct:start"/>
+           <log message="throwing error"></log>   
+        
+        <to uri="mock:start"/>
+<!--         <throwException ref="forced"/>
+ -->        <to uri="mock:result"/>
+    </route>
+   
+  </camelContext>
+ <bean id="myBean" class="com.sun.multicast.MyBean"/>
+ <bean id="forced" class="java.lang.IllegalArgumentException">
+   <constructor-arg index="0" value="This is forced"/>
+</bean>
+ 
+  
+</beans>

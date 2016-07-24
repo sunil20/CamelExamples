@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Configures the Camel Context-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+<bean id="processor" class="com.sun.DataConversion.DivisionNamesCSVValidationProcessor"/>
+  <camelContext xmlns="http://camel.apache.org/schema/spring">
+   <route id="csvImportPricing">
+			<from uri="file:src/data?noop=true" />	
+			<log message="body:::::${body}"></log>
+			 <unmarshal>
+			 			  
+				<csv useMaps="true" skipHeaderRecord="true" escapeDisabled="true" ignoreSurroundingSpaces="true" />
+			</unmarshal>
+			<process ref="processor"/>	
+			
+			<to uri="mock:end"></to>
+		</route>
+
+		
+   
+   
+   
+  </camelContext>
+
+</beans>

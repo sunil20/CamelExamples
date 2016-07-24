@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Configures the Camel Context-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+<!-- This is our aggregation strategy for the numbers received as input -->
+  <bean id="myStrategy" class="com.sun.AggregatorEx.NumberAggregationStrategy"/>
+
+   <!-- This is the persistent repository to store aggregated messages -->
+  <bean id="myRepo" class="org.apache.camel.component.hawtdb.HawtDBAggregationRepository">
+    <!-- use data/hawtdb.dat as the persistent store -->
+    <property name="persistentFileName" value="data/hawtdb.dat"/>
+    <!-- the repo must have an unique name, as you can have multiple repositories in the same file -->
+    <property name="repositoryName" value="myCoolRepo"/>
+    <!-- the repo file segment size -->
+    <property name="bufferSize" value="602400"/>
+  </bean>
+  
+
+  <camelContext xmlns="http://camel.apache.org/schema/spring">
+    <!-- here is a sample which processes the input files
+         (leaving them in place - see the 'noop' flag)
+         then performs content based routing on the message using XPath -->
+    <route>
+      <!-- ask user to enter a number -->
+      <from uri="stream:in?promptMessage=Enter a number to be added (enter STOP to end, and Ctrl-C to shutdown Camel): &amp;promptDelay=100"/>
+      <!-- aggregate the input, use eagerCheckCompletion to let the completionPredicate easily detect the STOP command -->
+      <aggregate strategyRef="myStrategy" aggregationRepositoryRef="myRepo" eagerCheckCompletion="true">
+        <!-- aggregate all messages into the same group -->
+        <correlationExpression>
+          <constant>true</constant>
+        </correlationExpression>
+        <!-- if end user enters STOP then complete the aggregation -->
+        <completionPredicate>
+          <simple>${body} contains 'STOP'</simple>
+        </completionPredicate>
+        <!-- and transform the completed message to a human readable -->
+        <transform>
+          <simple>The result is: ${body}</simple>
+        </transform>
+        <!-- which is printed on the console -->
+        <to uri="stream:out"/>
+      </aggregate>
+    </route>
+  </camelContext>
+
+</beans>

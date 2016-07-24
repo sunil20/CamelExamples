@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Configures the Camel Context-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+
+
+<!-- this is our POJO bean with our business logic defined as a plain spring bean -->
+<bean id="orderService" class="com.sun.Filecopy.OrderService" />
+
+  <camelContext xmlns="http://camel.apache.org/schema/spring">
+    <onException>
+    <!-- the exception is full qualified names as plain strings -->
+    <!-- there can be more just add a 2nd, 3rd exception element (unbounded) -->
+    <exception>com.sun.Filecopy.OrderFailedException</exception>
+    <!-- we can set the redelivery policy here as well -->
+    <redeliveryPolicy maximumRedeliveries="1" />
+    <!-- mark this as handled -->
+    <handled>
+      <constant>false</constant>
+    </handled>
+    <!-- let our order service handle this exception, call the orderFailed method -->
+    <bean ref="orderService" method="orderFailed" />
+    <!-- and since this is a unit test we use mock for assertions -->
+    <to uri="mock:error" />
+  </onException>
+   
+  <route>
+    <!-- the route -->
+    <from uri="direct:start" />
+    <!-- in the normal route then route to our order service and call handleOrder method -->
+    <bean ref="orderService" method="handleOrder" />
+    <!-- and since this is a unit test we use mock for assertions -->
+    <to uri="mock:result" />
+  </route>
+
+    
+  </camelContext>
+
+</beans>

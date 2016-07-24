@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Configures the Camel Context-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+  <camelContext xmlns="http://camel.apache.org/schema/spring">
+    
+     <route>
+        <from uri="file:src/data?noop=true"/>
+        <to uri="direct:foo"/>
+        <to uri="log:foo"/>       
+        <to uri="mock:result"/>
+    </route>
+ 
+    <route>
+        <from uri="direct:foo"/>
+        <log message="data from foo:::${body}"></log>
+        <transform>
+            <constant>Bye World  Example Completed</constant>
+        </transform>
+        <to uri="mock:end"></to>
+         <log message="data from direct:result:::${body}"></log>
+    </route>
+    
+  </camelContext>
+
+</beans>

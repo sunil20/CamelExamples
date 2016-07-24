@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Configures the Camel Context-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+<!-- this is the JDBC data source which uses an in-memory only Apache Derby database -->
+ <!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+  <property name="driverClassName" value="org.apache.derby.jdbc.EmbeddedDriver"/>
+  <property name="url" value="jdbc:derby:memory:orders;create=true"/>
+  <property name="username" value=""/>
+  <property name="password" value=""/>
+</bean> -->
+
+<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+  <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+  <property name="url" value="jdbc:mysql://localhost:3306/test" /> 
+  <property name="username" value="root"/>
+  <property name="password" value="admin"/>
+</bean> 
+ 
+<!-- bean which creates/destroys the database table for this example -->
+<bean id="initDatabase" class="com.sun.SqlEx.DatabaseBean"
+      init-method="create" destroy-method="destroy">
+  <property name="dataSource" ref="dataSource"/>
+</bean>
+ 
+<!-- configure the Camel SQL component to use the JDBC data source -->
+<bean id="sql" class="org.apache.camel.component.sql.SqlComponent">
+  <property name="dataSource" ref="dataSource"/>
+</bean>
+<!-- order bean is our business logic bean that creates new orders -->
+<bean id="orderBean" class="com.sun.SqlEx.OrderBean"/>
+ 
+<bean id="OrderSQLResultProcessor" class="com.sun.SqlEx.ResultProcessor"/> 
+
+<!-- here is Camel configured with a number of routes -->
+<camelContext xmlns="http://camel.apache.org/schema/spring">
+ 
+  <!-- use Camel property placeholder loaded from the given file -->
+  <propertyPlaceholder id="placeholder" location="classpath:sql.properties"/>
+ 
+  <!-- route that generate new orders and insert them in the database -->
+   <!-- <route id="generateOrder-route">
+    <from uri="timer:foo?period=5s"/>
+    <transform>
+      <method ref="orderBean" method="generateOrder"/>
+    </transform>
+    <to uri="sql:{{sql.insertOrder}}"/>
+    <log message="Inserted new order ${body[id]}"/>
+  </route>  -->
+ 
+ <!--  <route id="generateOrder-route">
+    <from uri="timer:foo?period=5s"/>
+    <transform>
+      <method ref="orderBean" method="generateOrder"/>
+    </transform>
+    <to uri="sql:{{sql.insertOrder}}"/>
+    <log message="Inserted new order ${body[id]}"/>
+  </route> -->
+ 
+ 
+  
+  <!-- <route id="selectOrder-route"  autoStartup="true">
+    <from uri="timer:foo?period=5s"/>
+    <transform>
+      <method ref="orderBean" method="generateOrder"/>
+    </transform>
+    <to uri="sql:{{sql.selectOrder.All}}"/>
+    <to uri="bean:orderBean?method=processOrder"></to>
+    <log message="OrderDetails ${body}"/>
+  </route> -->
+ 
+ 
+ <route id="selectOrder-route">
+  <from uri="timer:foo?period=5s"/>
+  <log message="=========reading generateOrder query============"/>
+    <!-- <transform>
+      <method ref="orderBean" method="generateOrder"/>
+    </transform> -->
+    <log message="=========multicasting started==========="/>
+    <multicast stopOnException="true"  parallelProcessing="true">
+        <to uri="direct:a"/>
+        <to uri="direct:b"/>        
+       </multicast>   
+    <to uri="sql:{{sql.selectOrder.All}}"/>
+<!--     <to uri="bean:orderBean?method=processOrder"></to>
+ -->    <log message="OrderDetails ${body}"/>
+  </route>
+  
+  <route id="selectByIdRoute"  autoStartup="true">
+    <from uri="direct:a"/>
+    <log message="=========direct:a started===========${sql.selectOrder.id}$"/>
+    <transform>
+      <method ref="orderBean" method="selectOrderById"/>
+    </transform>
+    <to uri="sql:{{sql.selectOrder.id}}"/> 
+    <log message="direct:a end with ${body}"/>
+     <process ref="OrderSQLResultProcessor" />
+  </route>
+  
+  <route id="selectAllRoute"  autoStartup="true">
+    <from uri="direct:b"/>
+    <log message="=========direct:b started==========="/>
+    <transform>
+      <method ref="orderBean" method="selectOrderByAll"/>
+    </transform>
+    <to uri="sql:{{sql.selectOrder.All}}"/>    
+    <log message="direct:b ${body}"/>
+    <process ref="OrderSQLResultProcessor" />
+ </route>
+ 
+ 
+ 
+ 
+ 
+   <!-- route that process the orders by picking up new rows from the database
+       and when done processing then update the row to mark it as processed -->
+  <!-- <route id="processOrder-route">
+    <from uri="sql:{{sql.selectOrder}}?onConsume={{sql.markOrder}}"/>
+    <to uri="bean:orderBean?method=processOrder"/>
+    <log message="${body}"/>
+  </route>  
+   -->
+  </camelContext>
+
+</beans>

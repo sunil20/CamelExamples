@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Configures the Camel Context-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:broker="http://activemq.apache.org/schema/core"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+<bean id="traceFormatter" class="org.apache.camel.processor.interceptor.DefaultTraceFormatter">
+    <property name="showBody" value="false"/>
+    <property name="showBodyType" value="false"/>
+    <property name="showBreadCrumb" value="false"/>
+    <property name="maxChars" value="100"/>
+</bean>
+
+
+<!-- set up ActiveMQ broker -->
+  <broker:broker useJmx="false" persistent="false" brokerName="localhost">
+    <broker:transportConnectors>
+      <broker:transportConnector name="tcp" uri="tcp://localhost:61614" />
+    </broker:transportConnectors>
+  </broker:broker>
+
+  <bean id="jms" class="org.apache.camel.component.jms.JmsComponent">
+    <property name="connectionFactory">
+      <bean class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL" value="tcp://localhost:61616" />
+      </bean>
+    </property>
+  </bean> 
+  
+  <camelContext xmlns="http://camel.apache.org/schema/spring" trace="true">
+    <!-- here is a sample which processes the input files
+         (leaving them in place - see the 'noop' flag)
+         then performs content based routing on the message using XPath -->
+   
+    <route>   
+    <from uri="file:src/data?noop=true"/>
+    <log message="loding data into jms que ${body}"></log>    
+    <to uri="jms:incomingOrders"/>
+    </route>    
+    
+    <route>   
+    <from uri="jms:incomingOrders"/>   
+   <!--  <log message="loding data into jms que ${body}"></log>   -->
+      
+      <choice>
+            <when>          
+                <xpath>/person/firstName = 'James'</xpath>
+                  <log id="_log1" message="James"/>
+                   <to uri="file:target/James"/>
+            </when>
+            <when>
+                <xpath>/person/firstName = 'Hiram'</xpath>
+                  <log id="_log2" message="Hiram"/>
+                <to uri="file:target/Hiram"/>
+            </when>
+            <otherwise>
+               <to uri="file:target/default"/>
+            </otherwise>
+        </choice>
+    <to uri="file:target/jms"/>
+    </route> 
+    
+   
+    
+  </camelContext>
+
+</beans>

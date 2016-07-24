@@ -1,0 +1,95 @@
+2016-05-25 04:02:48,561 | INFO | MainSupport.java 329 | Apache Camel 2.15.3 starting
+2016-05-25 04:02:48,891 | INFO | AbstractApplicationContext.java 513 | Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@47c2d15f: startup date [Wed May 25 04:02:48 IST 2016]; root of context hierarchy
+2016-05-25 04:02:49,010 | INFO | XmlBeanDefinitionReader.java 316 | Loading XML bean definitions from file [C:\Users\sindhusunil\workspace\SqlEx1\target\classes\META-INF\spring\camel-context.xml]
+2016-05-25 04:02:52,149 | INFO | DefaultTypeConverter.java 56 | Loaded 183 type converters
+2016-05-25 04:02:52,150 | INFO | DefaultCamelContext.java 2434 | Apache Camel 2.15.3 (CamelContext: camel-1) is starting
+2016-05-25 04:02:52,153 | INFO | ManagedManagementStrategy.java 187 | JMX is enabled
+2016-05-25 04:02:52,594 | INFO | DefaultCamelContext.java 2649 | AllowUseOriginalMessage is enabled. If access to the original message is not needed, then its recommended to turn this option off as it may improve performance.
+2016-05-25 04:02:52,595 | INFO | DefaultCamelContext.java 2659 | StreamCaching is not in use. If using streams then its recommended to enable stream caching. See more details at http://camel.apache.org/stream-caching.html
+2016-05-25 04:02:52,671 | INFO | DefaultCamelContext.java 3180 | Route: generateOrder-route started and consuming from: Endpoint[direct://foo]
+2016-05-25 04:02:52,708 | INFO | DefaultCamelContext.java 3180 | Route: processOrder-route started and consuming from: Endpoint[sql://select%20*%20from%20orders]
+2016-05-25 04:02:52,709 | INFO | DefaultCamelContext.java 2469 | Total 2 routes, of which 2 is started.
+2016-05-25 04:02:52,711 | INFO | DefaultCamelContext.java 2470 | Apache Camel 2.15.3 (CamelContext: camel-1) started in 0.559 seconds
+2016-05-25 04:06:47,814 | INFO | MainSupport.java 329 | Apache Camel 2.15.3 starting
+2016-05-25 04:06:47,984 | INFO | AbstractApplicationContext.java 513 | Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@76f0795: startup date [Wed May 25 04:06:47 IST 2016]; root of context hierarchy
+2016-05-25 04:06:48,170 | INFO | XmlBeanDefinitionReader.java 316 | Loading XML bean definitions from file [C:\Users\sindhusunil\workspace\SqlEx1\target\classes\META-INF\spring\camel-context.xml]
+2016-05-25 04:06:50,429 | INFO | DefaultCamelContext.java 2434 | Apache Camel 2.15.3 (CamelContext: camel-1) is starting
+2016-05-25 04:06:50,433 | INFO | ManagedManagementStrategy.java 187 | JMX is enabled
+2016-05-25 04:06:50,603 | INFO | DefaultTypeConverter.java 56 | Loaded 183 type converters
+2016-05-25 04:06:50,843 | INFO | DefaultCamelContext.java 2649 | AllowUseOriginalMessage is enabled. If access to the original message is not needed, then its recommended to turn this option off as it may improve performance.
+2016-05-25 04:06:50,844 | INFO | DefaultCamelContext.java 2659 | StreamCaching is not in use. If using streams then its recommended to enable stream caching. See more details at http://camel.apache.org/stream-caching.html
+2016-05-25 04:06:50,877 | INFO | DefaultCamelContext.java 3180 | Route: generateOrder-route started and consuming from: Endpoint[direct://foo]
+2016-05-25 04:06:50,878 | INFO | DefaultCamelContext.java 2469 | Total 1 routes, of which 1 is started.
+2016-05-25 04:06:50,879 | INFO | DefaultCamelContext.java 2470 | Apache Camel 2.15.3 (CamelContext: camel-1) started in 0.449 seconds
+2016-05-25 04:09:19,415 | INFO | MainSupport.java 329 | Apache Camel 2.15.3 starting
+2016-05-25 04:09:19,545 | INFO | AbstractApplicationContext.java 513 | Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@63cdead2: startup date [Wed May 25 04:09:19 IST 2016]; root of context hierarchy
+2016-05-25 04:09:19,640 | INFO | XmlBeanDefinitionReader.java 316 | Loading XML bean definitions from file [C:\Users\sindhusunil\workspace\SqlEx1\target\classes\META-INF\spring\camel-context.xml]
+2016-05-25 04:09:22,757 | INFO | DefaultCamelContext.java 2434 | Apache Camel 2.15.3 (CamelContext: camel-1) is starting
+2016-05-25 04:09:22,760 | INFO | ManagedManagementStrategy.java 187 | JMX is enabled
+2016-05-25 04:09:22,930 | INFO | DefaultTypeConverter.java 56 | Loaded 183 type converters
+2016-05-25 04:09:23,525 | INFO | DefaultCamelContext.java 2649 | AllowUseOriginalMessage is enabled. If access to the original message is not needed, then its recommended to turn this option off as it may improve performance.
+2016-05-25 04:09:23,526 | INFO | DefaultCamelContext.java 2659 | StreamCaching is not in use. If using streams then its recommended to enable stream caching. See more details at http://camel.apache.org/stream-caching.html
+2016-05-25 04:09:23,570 | INFO | DefaultCamelContext.java 3180 | Route: generateOrder-route started and consuming from: Endpoint[direct://abc]
+2016-05-25 04:09:23,571 | INFO | DefaultCamelContext.java 2469 | Total 1 routes, of which 1 is started.
+2016-05-25 04:09:23,572 | INFO | DefaultCamelContext.java 2470 | Apache Camel 2.15.3 (CamelContext: camel-1) started in 0.814 seconds
+2016-05-25 04:31:35,425 | INFO | MarkerIgnoringBase.java 95 | Processed order id 0 item 222 of 2 copies of ActiveMQ in Action
+2016-05-25 04:31:35,933 | INFO | MarkerIgnoringBase.java 95 | Processed order id 0 item 222 of 2 copies of ActiveMQ in Action
+2016-05-25 04:31:36,437 | INFO | MarkerIgnoringBase.java 95 | Processed order id 0 item 222 of 2 copies of ActiveMQ in Action
+2016-05-25 04:31:36,939 | INFO | MarkerIgnoringBase.java 95 | Processed order id 0 item 222 of 2 copies of ActiveMQ in Action
+2016-05-25 04:31:37,452 | INFO | MarkerIgnoringBase.java 95 | Processed order id 0 item 222 of 2 copies of ActiveMQ in Action
+2016-05-25 04:31:37,957 | INFO | MarkerIgnoringBase.java 95 | Processed order id 0 item 222 of 2 copies of ActiveMQ in Action
+2016-05-25 04:31:38,459 | INFO | MarkerIgnoringBase.java 95 | Processed order id 0 item 222 of 2 copies of ActiveMQ in Action
+2016-05-25 04:31:38,963 | INFO | MarkerIgnoringBase.java 95 | Processed order id 0 item 222 of 2 copies of ActiveMQ in Action
+2016-05-25 04:31:39,478 | INFO | MarkerIgnoringBase.java 95 | Processed order id 0 item 222 of 2 copies of ActiveMQ in Action
+2016-05-25 04:31:39,983 | INFO | MarkerIgnoringBase.java 95 | Processed order id 0 item 222 of 2 copies of ActiveMQ in Action
+2016-05-25 04:31:40,487 | INFO | MarkerIgnoringBase.java 95 | Processed order id 0 item 222 of 2 copies of ActiveMQ in Action
+2016-05-25 04:31:40,489 | INFO | MarkerIgnoringBase.java 95 | Processed order id 1 item 111 of 2 copies of Camel in Action
+2016-05-25 04:31:40,992 | INFO | MarkerIgnoringBase.java 95 | Processed order id 0 item 222 of 2 copies of ActiveMQ in Action
+2016-05-25 04:31:40,993 | INFO | MarkerIgnoringBase.java 95 | Processed order id 1 item 111 of 2 copies of Camel in Action
+2016-05-25 04:31:41,496 | INFO | MarkerIgnoringBase.java 95 | Processed order id 0 item 222 of 2 copies of ActiveMQ in Action
+2016-05-25 04:31:41,501 | INFO | MarkerIgnoringBase.java 95 | Processed order id 1 item 111 of 2 copies of Camel in Action
+2016-05-25 04:31:42,004 | INFO | MarkerIgnoringBase.java 95 | Processed order id 0 item 222 of 2 copies of ActiveMQ in Action
+2016-05-25 04:31:42,005 | INFO | MarkerIgnoringBase.java 95 | Processed order id 1 item 111 of 2 copies of Camel in Action
+2016-05-25 04:31:42,509 | INFO | MarkerIgnoringBase.java 95 | Processed order id 0 item 222 of 2 copies of ActiveMQ in Action
+2016-05-25 04:31:42,510 | INFO | MarkerIgnoringBase.java 95 | Processed order id 1 item 111 of 2 copies of Camel in Action
+2016-05-25 04:31:43,014 | INFO | MarkerIgnoringBase.java 95 | Processed order id 0 item 222 of 2 copies of ActiveMQ in Action
+2016-05-25 04:31:43,016 | INFO | MarkerIgnoringBase.java 95 | Processed order id 1 item 111 of 2 copies of Camel in Action
+2016-05-25 04:31:43,519 | INFO | MarkerIgnoringBase.java 95 | Processed order id 0 item 222 of 2 copies of ActiveMQ in Action
+2016-05-25 04:31:43,521 | INFO | MarkerIgnoringBase.java 95 | Processed order id 1 item 111 of 2 copies of Camel in Action
+2016-05-25 04:31:44,025 | INFO | MarkerIgnoringBase.java 95 | Processed order id 0 item 222 of 2 copies of ActiveMQ in Action
+2016-05-25 04:31:44,027 | INFO | MarkerIgnoringBase.java 95 | Processed order id 1 item 111 of 2 copies of Camel in Action
+2016-05-25 04:31:44,540 | INFO | MarkerIgnoringBase.java 95 | Processed order id 0 item 222 of 2 copies of ActiveMQ in Action
+2016-05-25 04:31:44,544 | INFO | MarkerIgnoringBase.java 95 | Processed order id 1 item 111 of 2 copies of Camel in Action
+2016-05-25 04:31:45,048 | INFO | MarkerIgnoringBase.java 95 | Processed order id 0 item 222 of 2 copies of ActiveMQ in Action
+2016-05-25 04:31:45,050 | INFO | MarkerIgnoringBase.java 95 | Processed order id 1 item 111 of 2 copies of Camel in Action
+2016-05-25 04:31:45,555 | INFO | MarkerIgnoringBase.java 95 | Processed order id 0 item 222 of 2 copies of ActiveMQ in Action
+2016-05-25 04:31:45,557 | INFO | MarkerIgnoringBase.java 95 | Processed order id 1 item 111 of 2 copies of Camel in Action
+2016-05-25 04:31:45,559 | INFO | MarkerIgnoringBase.java 95 | Processed order id 2 item 222 of 5 copies of ActiveMQ in Action
+2016-05-25 04:31:46,062 | INFO | MarkerIgnoringBase.java 95 | Processed order id 0 item 222 of 2 copies of ActiveMQ in Action
+2016-05-25 04:31:46,063 | INFO | MarkerIgnoringBase.java 95 | Processed order id 1 item 111 of 2 copies of Camel in Action
+2016-05-25 04:31:46,065 | INFO | MarkerIgnoringBase.java 95 | Processed order id 2 item 222 of 5 copies of ActiveMQ in Action
+2016-05-25 04:31:46,567 | INFO | MarkerIgnoringBase.java 95 | Processed order id 0 item 222 of 2 copies of ActiveMQ in Action
+2016-05-25 04:31:46,569 | INFO | MarkerIgnoringBase.java 95 | Processed order id 1 item 111 of 2 copies of Camel in Action
+2016-05-25 04:31:46,570 | INFO | MarkerIgnoringBase.java 95 | Processed order id 2 item 222 of 5 copies of ActiveMQ in Action
+2016-05-25 04:31:47,073 | INFO | MarkerIgnoringBase.java 95 | Processed order id 0 item 222 of 2 copies of ActiveMQ in Action
+2016-05-25 04:31:47,075 | INFO | MarkerIgnoringBase.java 95 | Processed order id 1 item 111 of 2 copies of Camel in Action
+2016-05-25 04:31:47,076 | INFO | MarkerIgnoringBase.java 95 | Processed order id 2 item 222 of 5 copies of ActiveMQ in Action
+2016-05-25 04:31:47,588 | INFO | MarkerIgnoringBase.java 95 | Processed order id 0 item 222 of 2 copies of ActiveMQ in Action
+2016-05-25 04:31:47,591 | INFO | MarkerIgnoringBase.java 95 | Processed order id 1 item 111 of 2 copies of Camel in Action
+2016-05-25 04:31:47,592 | INFO | MarkerIgnoringBase.java 95 | Processed order id 2 item 222 of 5 copies of ActiveMQ in Action
+2016-05-25 04:31:48,096 | INFO | MarkerIgnoringBase.java 95 | Processed order id 0 item 222 of 2 copies of ActiveMQ in Action
+2016-05-25 04:31:48,097 | INFO | MarkerIgnoringBase.java 95 | Processed order id 1 item 111 of 2 copies of Camel in Action
+2016-05-25 04:31:48,098 | INFO | MarkerIgnoringBase.java 95 | Processed order id 2 item 222 of 5 copies of ActiveMQ in Action
+2016-05-25 04:31:48,609 | INFO | MarkerIgnoringBase.java 95 | Processed order id 0 item 222 of 2 copies of ActiveMQ in Action
+2016-05-25 04:31:48,611 | INFO | MarkerIgnoringBase.java 95 | Processed order id 1 item 111 of 2 copies of Camel in Action
+2016-05-25 04:31:48,612 | INFO | MarkerIgnoringBase.java 95 | Processed order id 2 item 222 of 5 copies of ActiveMQ in Action
+2016-05-25 04:31:49,128 | INFO | MarkerIgnoringBase.java 95 | Processed order id 0 item 222 of 2 copies of ActiveMQ in Action
+2016-05-25 04:31:49,128 | INFO | MarkerIgnoringBase.java 95 | Processed order id 1 item 111 of 2 copies of Camel in Action
+2016-05-25 04:31:49,128 | INFO | MarkerIgnoringBase.java 95 | Processed order id 2 item 222 of 5 copies of ActiveMQ in Action
+2016-05-25 04:31:49,636 | INFO | MarkerIgnoringBase.java 95 | Processed order id 0 item 222 of 2 copies of ActiveMQ in Action
+2016-05-25 04:31:49,638 | INFO | MarkerIgnoringBase.java 95 | Processed order id 1 item 111 of 2 copies of Camel in Action
+2016-05-25 04:31:49,639 | INFO | MarkerIgnoringBase.java 95 | Processed order id 2 item 222 of 5 copies of ActiveMQ in Action
+2016-05-25 04:31:50,141 | INFO | MarkerIgnoringBase.java 95 | Processed order id 0 item 222 of 2 copies of ActiveMQ in Action
+2016-05-25 04:31:50,141 | INFO | MarkerIgnoringBase.java 95 | Processed order id 1 item 111 of 2 copies of Camel in Action
+2016-05-25 04:31:50,142 | INFO | MarkerIgnoringBase.java 95 | Processed order id 2 item 222 of 5 copies of ActiveMQ in Action
+2016-05-25 04:31:50,143 | INFO | MarkerIgnoringBase.java 95 | Processed order id 3 item 111 of 4 copies of Camel in Action
